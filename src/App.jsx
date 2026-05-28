@@ -224,14 +224,6 @@ const PRIORITY_COLORS = {
   "Low": { bg: "#F1EFE8", text: "#444441" },
 };
 
-const formatIssueDate = (date) => {
-  try {
-    return new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-  } catch {
-    return date;
-  }
-};
-
 const CATEGORIES = ["Electrical", "Plumbing", "HVAC", "Structural", "IT", "Cleaning", "Other"];
 const BUILDINGS = ["Block A", "Block B", "Block C", "Library", "Sports Hall", "Canteen", "Gym", "Computer Lab"];
 
@@ -342,7 +334,7 @@ const Dashboard = ({ issues, onNav }) => {
                 <td style={{ padding: "10px 10px 10px 0", color: "#5F5E5A", fontSize: 12 }}>{issue.location}</td>
                 <td style={{ padding: "10px 10px 10px 0" }}><Pill label={issue.status} colors={STATUS_COLORS[issue.status]} /></td>
                 <td style={{ padding: "10px 10px 10px 0" }}><Pill label={issue.priority} colors={PRIORITY_COLORS[issue.priority]} /></td>
-                <td style={{ padding: "10px 10px 10px 0", color: "#888780", fontSize: 12 }}>{formatIssueDate(issue.date)}</td>
+                <td style={{ padding: "10px 10px 10px 0", color: "#888780", fontSize: 12 }}>{issue.date}</td>
               </tr>
             ))}
           </tbody>
@@ -400,7 +392,7 @@ const IssuesList = ({ issues, onStatusChange, userRole }) => {
                   <Pill label={issue.priority} colors={PRIORITY_COLORS[issue.priority]} />
                 </div>
                 <p style={{ fontSize: 13, color: "#444441", margin: "0 0 8px" }}>{issue.desc}</p>
-                <span style={{ fontSize: 11, color: "#B4B2A9" }}>Reported by {issue.reporter} · {formatIssueDate(issue.date)}</span>
+                <span style={{ fontSize: 11, color: "#B4B2A9" }}>Reported by {issue.reporter} · {issue.date}</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0 }}>
                 <Pill label={issue.status} colors={STATUS_COLORS[issue.status]} />
